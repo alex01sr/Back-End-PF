@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize/types');
 
-module.exports = (sequelize) => {
-    sequelize.define('User',{
+module.exports = (Sequelize) => {
+    sequelize.define('Movies',{
         id:{
             type: DataTypes.UUID,
             primaryKey: true,
@@ -10,20 +10,24 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        email:{
-            type: DataTypes.STRING,
+        duration:{
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        password:{
-            type: DataTypes.STRING,
+        description:{
+            type: DataTypes.TEXT,
             allowNull: true,
         },
-        provider:{
+        image:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-        admin:{
-            type: DataTypes.BOOLEAN,
+        torrent:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        year: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },

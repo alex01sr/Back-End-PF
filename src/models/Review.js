@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize/types');
 
-module.exports = (sequelize) => {
-    sequelize.define('User',{
+module.exports = (Sequelize) => {
+    sequelize.define('Review',{
         id:{
             type: DataTypes.UUID,
             primaryKey: true,
@@ -10,21 +10,13 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        email:{
-            type: DataTypes.STRING,
+        description:{
+            type: DataTypes.TEXT,
             allowNull: false,
         },
-        password:{
-            type: DataTypes.STRING,
+        rating:{
+            type: DataTypes.INTEGER,
             allowNull: true,
-        },
-        provider:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        admin:{
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
         },
     },
     {freezeTableName: true, timesStamp: true}

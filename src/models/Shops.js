@@ -1,20 +1,20 @@
 const { DataTypes } = require('sequelize/types');
 
 module.exports = (sequelize) => {
-    sequelize.define('User',{
+    sequelize.define('Shops',{
         id:{
             type: DataTypes.UUID,
             primaryKey: true,
         },
-        title:{
-            type: DataTypes.STRING,
+        total:{
+            type: DataTypes.DOUBLE,
             allowNull: false,
         },
-        email:{
-            type: DataTypes.STRING,
+        articlesQt:{
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        password:{
+       status:{
             type: DataTypes.STRING,
             allowNull: true,
         },
@@ -22,8 +22,8 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        admin:{
-            type: DataTypes.BOOLEAN,
+        mercadoPagoId:{
+            type: DataTypes.STRING,
             allowNull: false,
         },
     },
