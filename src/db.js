@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { Sequelize } = require('sequelize');
 
+
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 const sequelize = new Sequelize(
@@ -41,13 +42,20 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Review , Movies , Shops , User } = sequelize.models;
+const { Review , Movie, Shop , User, FavoriteMovie , Gender } = Sequelize.models;
 
-Movies.belongsToMany(Shops, {through: "movies_shops"});
-Shops.belongsToMany(Movies, {through: "movies_shops"});
-User.hasMany(Shops, {foreignKey: "user_shops"});
-User.hasMany(Review, {foreignKey: "user_reviews"});
+Movie.belongsToMany(Shop, {through: "moviesShops"});
+Shop.belongsToMany(Movie, {through: "moviesShops"});
+User.hasMany(Shop, {foreignKey: "userShops"});
+User.hasMany(Review, {foreignKey: "userReviews"});
 
+User.hasMany(FavoriteMovie, {foreignKey: 'userId'});
+FavoriteMovie.belongsTo(Movie, {foreignKey: 'userId'});
+
+Movie.hasMany(FavoriteMovie, {foreignKey: 'movieId'});
+FavoriteMovie.belongsTo(Movie, {foreignKey: 'movieId'});
+
+Movie.hasMany(Gender, {foreignKey: 'movieGender'});
 
 
 
