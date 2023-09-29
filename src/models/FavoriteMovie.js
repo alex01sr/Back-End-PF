@@ -3,17 +3,17 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('FavoriteMovie',{
         id:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             autoincrement: true,
             allowNull: false,
             primaryKey: true,
         },
         userId:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             allowNull: false,  
         },
         Adventure:{
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
             allowNull: true,
             references: {
                 model: 'User',
@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
             },
         },
         movieId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             allowNull: false,
             references:{
                 model: 'Movie',
