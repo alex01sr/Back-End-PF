@@ -23,14 +23,19 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        torrent:{
-            type: DataTypes.JSONB,
-            allowNull: false,
-        },
         year: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        language:{
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        torrent:{
+            type: DataTypes.JSONB,
+            allowNull: false,
+        },
+
     },
     {freezeTableName: true, timesStamp: true}
     );

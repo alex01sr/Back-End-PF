@@ -19,8 +19,9 @@ const getMovies = async (req, res) => {
                         duration: theMovies[i]?.runtime,
                         description: theMovies[i]?.description_full,
                         image: theMovies[i]?.medium_cover_image,
-                        torrent: theMovies[i]?.torrents,
                         year: theMovies[i]?.year,
+                        language: theMovies[i]?.language,
+                        torrent: theMovies[i]?.torrents,
                     }});
 
             }
