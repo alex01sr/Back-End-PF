@@ -5,6 +5,9 @@ const { Movie } = require("../db");
 
 const getMovies = async (req, res) => {
     try {
+        let dbMovies = await Movie.findAll();
+        
+        if(dbMovies.length === 0){
         const pages = [1,2,3,4];
 
         for (let i = 0; i < pages.length; i++) {
@@ -26,6 +29,7 @@ const getMovies = async (req, res) => {
 
             }
         }
+    }
 
 
         const allMovies = await Movie.findAll();
