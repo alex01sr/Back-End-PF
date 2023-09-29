@@ -11,10 +11,6 @@ module.exports = (sequelize) => {
         userId:{
             type: DataTypes.UUID,
             allowNull: false,  
-        },
-        Adventure:{
-            type: DataTypes.UUID,
-            allowNull: true,
             references: {
                 model: 'User',
                 key: 'id',
