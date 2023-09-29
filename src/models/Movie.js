@@ -2,10 +2,11 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('Movie',{
-        id:{
+        id: {
             type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV1,
             primaryKey: true,
-        },
+          },
         title:{
             type: DataTypes.STRING,
             allowNull: false,
@@ -23,7 +24,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         torrent:{
-            type: DataTypes.STRING,
+            type: DataTypes.JSONB,
             allowNull: false,
         },
         year: {
