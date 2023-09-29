@@ -42,5 +42,5 @@ const getFilterLanguage = async(req, res)=>{
 
 module.exports = {
     getFilterYear,
-    getFilterLanguage,
+    getFilterLanguage
 }
