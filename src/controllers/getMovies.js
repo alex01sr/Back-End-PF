@@ -40,15 +40,15 @@ const getMovies = async (req, res) => {
         }
     }
 
-    const allGenres = await Genre.findAll({
+    const allMovies = await Movie.findAll({
         include: [
             {
-              model: Movie,
+              model: Genre,
               through: { attributes: []},
-              attributes: ["id", "title", "duration", "description", "image", "year", "language", "torrent"]
+              attributes: ["id", "name"]
             }
         ]
-    });
+    })
 
 
         allMovies.length
