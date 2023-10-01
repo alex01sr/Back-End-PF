@@ -1,8 +1,7 @@
 //Endpoint: http://localhost:3001/Nonflix/movies
 
 const axios = require('axios');
-const { Movie, Genre } = require("../db");
-
+const { Movie } = require("../db");
 
 const getMovies = async (req, res) => {
     try {
@@ -13,33 +12,26 @@ const getMovies = async (req, res) => {
 
         for (let i = 0; i < pages.length; i++) {
             const { data } = await axios.get(`https://yts.mx/api/v2/list_movies.json?limit=50&page=${pages[i]}`);
-            const theMovies = data?.data?.movies;//todas las peliculas
-            
-            for(let i = 0; i < theMovies.length; i++) { //recorrido de las peliculas para cargar la tabla Movie;
+            const theMovies = data?.data?.movies;
 
-                        const movie= await Movie.create({
-                            
-                            // id: theMovies[i]?.imdb_code,
-                            title: theMovies[i]?.title,
-                            duration: theMovies[i]?.runtime,
-                            description: theMovies[i]?.description_full != ""?theMovies[i]?.description_full:"Without description",
-                            image: theMovies[i]?.medium_cover_image,
-                            year: theMovies[i]?.year,
-                            language: theMovies[i]?.language,
-                            torrent: theMovies[i]?.torrents,
-                        });
-                        
-                        theMovies[i].genres.map(async(genre)=> {
-                            let newGenre = await Genre.findOrCreate({where:{id: genre, name: genre}});
-                            
-                            await movie.addGenre(newGenre[0].dataValues.id)
+            for (let i = 0; i < theMovies.length; i++) {
+                    await Movie.findOrCreate({ where:{
 
-                        })
+                        // id: theMovies[i]?.imdb_code,
+                        title: theMovies[i]?.title,
+                        duration: theMovies[i]?.runtime,
+                        description: theMovies[i]?.description_full,
+                        image: theMovies[i]?.medium_cover_image,
+                        year: theMovies[i]?.year,
+                        language: theMovies[i]?.language,
+                        torrent: theMovies[i]?.torrents,
+                    }});
 
             }
         }
     }
 
+      
     const allMovies = await Movie.findAll({
         include: [
             {
@@ -50,7 +42,7 @@ const getMovies = async (req, res) => {
         ]
     })
 
-
+       
         allMovies.length
             ? res.status(200).json(allMovies)
             : res.status(200).json(await Movie.findAll())

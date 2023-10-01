@@ -1,31 +1,11 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Genre',{
-        id: {
-            type:DataTypes.STRING,
-            primaryKey: true,
-        },
+    sequelize.define('Gender',{
         name:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-
-
-        // const allMovies = await Movie.findAll({
-        //     include: [
-        //         {
-        //             model: Genre,
-        //             through: { attributes: [] },
-        //             attributes: ["id", "name"]
-        //         }
-        //     ]
-        // });
-
-
-
-
-
         // GenderId:{
         //     type: DataTypes.INTEGER,
         //     autoincrement: true,
@@ -117,6 +97,6 @@ module.exports = (sequelize) => {
         //     allowNull: true,
         // },
     },
-    {freezeTableName: true, timesStamp: false}
+    {freezeTableName: true, timesStamp: true}
     );
 };
