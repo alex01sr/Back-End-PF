@@ -31,9 +31,18 @@ const getMovies = async (req, res) => {
         }
     }
 
+      
+    const allMovies = await Movie.findAll({
+        include: [
+            {
+              model: Genre,
+              through: { attributes: []},
+              attributes: ["id", "name"]
+            }
+        ]
+    })
 
-        const allMovies = await Movie.findAll();
-
+       
         allMovies.length
             ? res.status(200).json(allMovies)
             : res.status(200).json(await Movie.findAll())
