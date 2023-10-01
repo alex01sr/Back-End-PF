@@ -11,8 +11,8 @@ const getFilterGenre = async(req, res) => {
             include: [
                 {
                   model: Movie,
-                  through: { attributes: []},
-                  attributes: ["id", "title", "duration", "description", "image", "year", "language", "torrent" ]
+                //   through: { attributes: []},
+                //   attributes: ["id", "title", "duration", "description", "image", "year", "language", "torrent" ]
                 }
             ]
         })
