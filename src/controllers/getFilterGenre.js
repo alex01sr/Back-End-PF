@@ -1,3 +1,5 @@
+//http://localhost:3001/Nonflix/movies/genre?genre= Aqui el genero a buscar
+
 const { Genre, Movie } = require("../db");
 
 const getFilterGenre = async(req, res) => {
