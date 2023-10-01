@@ -1,11 +1,11 @@
-//http://localhost:3001/Nonflix/movies/genre?genre= Aqui el genero a buscar
+//http://localhost:3001/Nonflix/movies/filter/genre?genre= Aqui el genero a buscar
 
 const { Genre, Movie } = require("../db");
 
 const getFilterGenre = async(req, res) => {
     try {
         const {genre} = req.query;
-        console.log(genre)
+       
 
         const genreMovies = await Genre.findByPk(genre, {
             include: [
