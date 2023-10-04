@@ -1,19 +1,24 @@
-//Endpoint: http://localhost:3001/Nonflix/movies/name?name="aca el input a buscar"
+//Endpoint: http://localhost:3001/Nonflix/movies/name?name=  &year=  &lang=  "aca el input a buscar"
 
 const { Movie } = require("../db");
 
 
 const getByName = async (req, res) => {
     try {
-        const { name } = req.query;
+        const { name, year, lang } = req.query;
         
         if(!name) return res.json("Name is required");
 
         let nametoLower = name.toLowerCase();
-
-        const allMovies = await Movie.findAll();
-        
-        const filteredMovies = allMovies.filter((movie) => {
+        let filters = [];
+        filters = await Movie.findAll({
+            where: {
+              ...(year ? { year: year } : {}),
+              ...(lang ? { language: lang } : {}),
+            },
+          });
+        console.log(filters);
+        const filteredMovies = filters.filter((movie) => {
 
             if ((movie.dataValues.title).toLowerCase().includes(nametoLower)) {
                 return movie;

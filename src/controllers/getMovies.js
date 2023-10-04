@@ -21,6 +21,7 @@ const getMovies = async (req, res) => {
                             // id: theMovies[i]?.imdb_code,
                             title: theMovies[i]?.title,
                             duration: theMovies[i]?.runtime,
+                            trailer: theMovies[i]?.yt_trailer_code?`https://www.youtube.com/watch?v=${theMovies[i]?.yt_trailer_code}`:"Has no trailer",
                             description: theMovies[i]?.description_full != ""?theMovies[i]?.description_full:"Without description",
                             image: theMovies[i]?.medium_cover_image,
                             year: theMovies[i]?.year,
