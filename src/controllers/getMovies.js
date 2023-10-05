@@ -59,6 +59,7 @@ const getMovies = async (req, res) => {
         allMovies.length
             ? res.status(200).json(allMovies)
             : res.status(200).json(await Movie.findAll())
+            
     } catch (error) {
         res.status(400).json(error.message)
     }
