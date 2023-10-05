@@ -7,9 +7,9 @@ const jwt = require('jsonwebtoken');
 
 const verifyToken = async (req, res, next) => {
     try {
-        if(!req.headers.authorization) return res.status(500).json({error: "No tenes autorizacion mi rey"})
+        if(!req.headers.authorization) return res.status(500).json({error: "without authorization"})
         const token = req.headers.authorization.split(" ")[1]
-        if(!token) return res.status(404).json("Amigo o enemigo????")
+        if(!token) return res.status(404).json({error: error.message})
         const tokenVerified = await jwt.verify(token, JWT_SECRET)
         req.user = tokenVerified.id
         next()
@@ -20,7 +20,7 @@ const verifyToken = async (req, res, next) => {
 
 const routerLogin = Router();
 
-routerLogin.put("/update",verifyToken, putUser )
+routerLogin.put("/update", putUser )
 routerLogin.post("/", postUser )
 routerLogin.get("/", getUser )
 
