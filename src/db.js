@@ -50,7 +50,7 @@ User.hasMany(Shop, {foreignKey: "userShops"});
 User.hasMany(Review, {foreignKey: "userReviews"});
 
 User.hasMany(FavoriteMovie, {foreignKey: 'userId'});
-FavoriteMovie.belongsTo(Movie, {foreignKey: 'userId'});
+FavoriteMovie.belongsTo(Movie, {foreignKey: 'movieId'});
 
 Movie.hasMany(FavoriteMovie, {foreignKey: 'movieId'});
 FavoriteMovie.belongsTo(Movie, {foreignKey: 'movieId'});
