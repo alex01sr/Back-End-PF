@@ -4,8 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('FavoriteMovie',{
         id:{
             type: DataTypes.UUID,
-            autoincrement: true,
-            allowNull: false,
+            defaultValue: DataTypes.UUIDV1,
             primaryKey: true,
         },
         userId:{
